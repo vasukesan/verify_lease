@@ -13,9 +13,7 @@ The Extension Management page can also be opened by clicking on the Chrome menu,
 Usage:
 1. Fill out the information about the lease on the website.
 
-2. When complete, click on the "L" icon in the top right corner of the browser.
-The program will scan the page for errors. If there are errors, they will be a highlighted 
-in red and a detailed comment will apear. Fix any errors. 
+2. When complete, click on the "L" icon in the top right corner of the browser. The program will scan the page. All fields that need to be calculated will automatically be filled. If there are errors, they will be a highlighted in red and a detailed comment will apear. Fix any errors. 
 
 3. Repeat step 2 until the page turns green. This indicates that no errors were found.
 

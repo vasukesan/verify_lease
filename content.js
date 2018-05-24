@@ -1,6 +1,7 @@
 var debug = true;
 main();
 
+
 function main(){
 	if(debug) console.log("start\n\n\n");
 	clear();
@@ -51,6 +52,7 @@ function main(){
 			document.getElementsByName("[Pet_Deposit_Amt]")[0],
 		];
 
+
 	approved += calculated(calc1," = rental amount + parking monthly rent amount + pet rent amount + monthly water/sewer/garbage fee");
 	approved += calculated(calc2," = non-refundable fees amt + pet fee amt");
 	approved += calculated(calc3," = Security Deposit amt + pet deposit amt");
@@ -68,7 +70,11 @@ function main(){
 function errorMsg(elt,msg){
 	var parent = elt.parentElement.parentElement;
 	parent.bgColor = "red";
-	parent.innerHTML+="<td class='errorMsg'>"+msg+"</td>";
+	// parent.innerHTML+="<td class='errorMsg'>"+msg+"</td>";
+	var elt = document.createElement("td");
+	elt.setAttribute("class",'errorMsg');
+	elt.innerHTML = msg;
+	parent.appendChild(elt);
 }
 
 function required(elt){
@@ -98,17 +104,20 @@ function conditional(){
 
 function calculated(arr,msg){
 	var elt = arr[0];
-	var target = elt.value;
-	if(debug) console.log(target+"target");
+	var inputed = elt.value;
+
+	if(debug) console.log(inputed+"inputed");
 	if(debug) console.log(arr);
 	var sum = 0;
 	var i;
 	for(i=1;i<arr.length;i++){
 		sum+=Number(arr[i].value);
 	}
-
-	if(target!=sum){
-		errorMsg(elt,"Should be "+sum+msg);
+	
+	if(inputed!=sum){
+		elt.value = sum;
+		if(inputed=="") inputed = 0;
+		errorMsg(elt,"Changed from "+inputed+" to "+sum+msg);
 		if(debug) console.log(sum+"calculatedwrong");
 		return true;
 
@@ -128,7 +137,11 @@ function duration(){
 		if(debug) console.log("date");
 		if(debug) console.log(end_date-begin_date);
 		var duration_days = (end_date-begin_date)/(1000*60*60*24);
-		if(duration_days>364) {
+		if(duration_days<0) {
+			errorMsg(lease_begin,"The lease must begin before it ends");
+			errorMsg(lease_end,"The lease must begin before it ends");
+			return true;
+		} else if(duration_days>364){
 			errorMsg(lease_begin,"The lease duration must be less than 12 months");
 			errorMsg(lease_end,"The lease duration must be less than 12 months");
 			return true;
