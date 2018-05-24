@@ -1,0 +1,37 @@
+lease begin - lease end < 12 months
+total deposit = security + pet
+
+
+Required:
+Application First name
+Application Last name
+Apartment number
+lease begin date
+lease end date
+month to month begins date
+rental amount
+security deposit amount
+non-refundable fees amt
+non-refundable fees desc
+rightSignature sender email
+rightSignature sender name
+rightSignature applicant email
+rightSignature applicant name
+
+Must be blank:
+last months rent deposit
+prior pmt amt
+
+Calculated:
+total rental amount= rental amount + parking monthly rent amount + pet rent amount + monthly water/sewer/garbage fee
+Total fees= non-refundable fees amt + pet fee amt 
+Total deposit amt = Security Deposit amt + pet deposit amt 
+
+Conditional:
+If non-refundable fees amt is specified then non-refundable fees desc is required
+
+Other:
+Lease end date - lease begin date must be less than 12 months
+Lease end date should be after start date
+
+

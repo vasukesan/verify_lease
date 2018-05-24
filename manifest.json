@@ -1,0 +1,18 @@
+{
+    "manifest_version": 2,
+    "name":    "Lease Verifier",
+    "version": "0.0",
+
+    "background": {
+        "persistent": false,
+        "scripts": ["background.js"]
+    },
+
+    "browser_action": {
+        "default_title": "Verify Lease"
+    },
+
+    "permissions": ["activeTab"]
+
+
+}
