@@ -11,11 +11,9 @@ The Extension Management page can also be opened by clicking on the Chrome menu,
 
 
 Usage:
-1. Download the "moco.xml" file from appMan and place in the "moco" folder, overwriting any previous "moco.xml" file. 
+1. Download the "moco.xml" file from appMan and place in the "moco" folder in the verify_lease extension folder, overwriting any previous "moco.xml" file. 
 
-2. In Google Chrome, go to the input form and click on the "L" icon in the top right corner of the browser. The data will be automatically inputted from the "moco.xml"  
-
-3. Repeat step 2 until the page turns green. This indicates that no errors were found.
+2. In Google Chrome, go to the Moco input form and click on the "L" icon in the top right corner of the browser. The data will be automatically inputted from the "moco.xml"  
 
 4. Submit the form. 
 

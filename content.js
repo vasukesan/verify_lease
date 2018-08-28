@@ -1,28 +1,24 @@
 var debug = true;
 
-var xmlDoc = readTextFile('moco/moco.xml');
-fillFromXML(xmlDoc);
+readTextFile('moco/moco.xml');
 //verifyForm();
-
 
 
 function readTextFile(file)
 {	
-	var allText = "No Text";
+	var url = chrome.runtime.getURL(file);
     var rawFile = new XMLHttpRequest();
-    rawFile.open("GET", file, false);
+    rawFile.open("GET", url, false);
     rawFile.onreadystatechange = function () {
         if(rawFile.readyState === 4)
         {
             if(rawFile.status === 200 || rawFile.status == 0)
             {
-                allText = rawFile.responseText;
-                
+                fillFromXML(rawFile.responseText);
             }
         }
     }
     rawFile.send(null);
-    return allText;
 }
 
 function editedMsg(elt){
@@ -31,7 +27,7 @@ function editedMsg(elt){
 	// parent.innerHTML+="<td class='errorMsg'>"+msg+"</td>";
 	var elt = document.createElement("td");
 	elt.setAttribute("class",'errorMsg');
-	elt.innerHTML = "Field filled automatically.";
+	//elt.innerHTML = "Field filled automatically.";
 	parent.appendChild(elt);
 }
 
@@ -42,8 +38,8 @@ function fillFromXML(xmlDoc){
 	var rowset2 = xmlDoc.getElementsByTagName("ROWSET2_ROW");
 
 	var domArr = [
-			document.getElementsByName("[Lease_Begin_Date]")[0],
-			document.getElementsByName("[Lease_End_Date]")[0],
+			document.getElementsByName("[Lease_Term_Begins_Date]")[0],
+			document.getElementsByName("[Lease_Term_Ends_Date]")[0],
 			document.getElementsByName("[Month_to_Month_Begins_Date]")[0],
 			document.getElementsByName("[Rental_Amount]")[0],
 			document.getElementsByName("[Parking_Monthly_Rental_Amt]")[0],
