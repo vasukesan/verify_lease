@@ -1,8 +1,105 @@
 var debug = true;
-main();
+
+var xmlDoc = readTextFile('moco/moco.xml');
+fillFromXML(xmlDoc);
+//verifyForm();
 
 
-function main(){
+
+function readTextFile(file)
+{	
+	var allText = "No Text";
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", file, false);
+    rawFile.onreadystatechange = function () {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                allText = rawFile.responseText;
+                
+            }
+        }
+    }
+    rawFile.send(null);
+    return allText;
+}
+
+function editedMsg(elt){
+	var parent = elt.parentElement.parentElement;
+	parent.bgColor = "lightblue";
+	// parent.innerHTML+="<td class='errorMsg'>"+msg+"</td>";
+	var elt = document.createElement("td");
+	elt.setAttribute("class",'errorMsg');
+	elt.innerHTML = "Field filled automatically.";
+	parent.appendChild(elt);
+}
+
+function fillFromXML(xmlDoc){
+	parser = new DOMParser();
+	xmlDoc = parser.parseFromString(xmlDoc,"text/xml");
+	var rowset1 = xmlDoc.getElementsByTagName("ROWSET1_ROW")[0].children;
+	var rowset2 = xmlDoc.getElementsByTagName("ROWSET2_ROW");
+
+	var domArr = [
+			document.getElementsByName("[Lease_Begin_Date]")[0],
+			document.getElementsByName("[Lease_End_Date]")[0],
+			document.getElementsByName("[Month_to_Month_Begins_Date]")[0],
+			document.getElementsByName("[Rental_Amount]")[0],
+			document.getElementsByName("[Parking_Monthly_Rental_Amt]")[0],
+			document.getElementsByName("[Pet_Rent_Amt]")[0],
+			document.getElementsByName("[1st_Month_Rent]")[0],
+			document.getElementsByName("[1st_Month_Rent_Start_Date]")[0],
+			document.getElementsByName("[1st_Month_Rent_End_Date]")[0],
+			document.getElementsByName("[2nd_Month_Rent]")[0],
+			document.getElementsByName("[2nd_Month_Rent_Start_Date]")[0],
+			document.getElementsByName("[2nd_Month_Rent_End_Date]")[0],
+			document.getElementsByName("[Security_Deposit_Amt]")[0],
+			document.getElementsByName("[Non-refundable_Fees_Amt]")[0],
+			document.getElementsByName("[Pet_Deposit_Amt]")[0],
+			document.getElementsByName("[Pet_Fee_Amt]")[0],
+			document.getElementsByName("[Total_Rental_Amount]")[0],
+			document.getElementsByName("[Prior_Pmt_Amt]")[0],
+			document.getElementsByName("[Monthly_Water/Sewer/Garbage_Fee]")[0],
+			document.getElementsByName("[Total_Deposits_Amt]")[0],
+			document.getElementsByName("[Total_Fees]")[0],
+			document.getElementsByName("[Total_Move-in_Charges]")[0],
+			document.getElementsByName("[Storage_Monthly_Rental_Amt]")[0]
+		];
+
+	for(var i=0;i<domArr.length;i++){
+		domArr[i].value = rowset1[i].innerHTML;
+		editedMsg(domArr[i]);
+	}
+
+
+	var domArr2 = [
+		document.getElementsByName("[RightSignature_Applicant_b_Name]")[0],
+		document.getElementsByName("[RightSignature_Applicant_b_Email]")[0],
+		document.getElementsByName("[RightSignature_Applicant_c_Name]")[0],
+		document.getElementsByName("[RightSignature_Applicant_c_Email]")[0],
+		document.getElementsByName("[RightSignature_Applicant_d_Name]")[0],
+		document.getElementsByName("[RightSignature_Applicant_d_Email]")[0],
+		document.getElementsByName("[RightSignature_Applicant_e_Name]")[0],
+		document.getElementsByName("[RightSignature_Applicant_e_Email]")[0]
+	]
+
+	var dom_index = 0;
+	for(var i=0;i<rowset2.length;i++){
+		row = rowset2[i].children;
+		name = row[0].innerHTML + " " + row[1].innerHTML;
+		editedMsg(domArr2[dom_index])
+		domArr2[dom_index++].value = name;
+		editedMsg(domArr2[dom_index])
+		domArr2[dom_index++].value = row[2].innerHTML;
+
+
+
+	}
+	
+}
+
+function verifyForm(){
 	if(debug) console.log("start\n\n\n");
 	clear();
 

@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name":    "Lease Verifier",
-    "version": "1.1",
+    "version": "2.0",
 
     "background": {
         "persistent": false,
@@ -13,6 +13,10 @@
     },
 
     "permissions": ["activeTab"]
+
+    "web_accessible_resources": [
+    	"moco/moco.xml"
+	]
 
 
 }
