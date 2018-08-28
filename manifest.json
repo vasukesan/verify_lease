@@ -12,7 +12,7 @@
         "default_title": "Verify Lease"
     },
 
-    "permissions": ["activeTab"]
+    "permissions": ["activeTab"],
 
     "web_accessible_resources": [
     	"moco/moco.xml"
