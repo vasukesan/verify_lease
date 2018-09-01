@@ -14,7 +14,7 @@ function readTextFile(file)
         {
             if(rawFile.status === 200 || rawFile.status == 0)
             {
-                fillFromXML(rawFile.responseText);
+                fillFromXML(rawFile.responseText); //async callback
             }
         }
     }
@@ -37,37 +37,30 @@ function fillFromXML(xmlDoc){
 	var rowset1 = xmlDoc.getElementsByTagName("ROWSET1_ROW")[0].children;
 	var rowset2 = xmlDoc.getElementsByTagName("ROWSET2_ROW");
 
-	var domArr = [
-			document.getElementsByName("[Lease_Term_Begins_Date]")[0],
-			document.getElementsByName("[Lease_Term_Ends_Date]")[0],
-			document.getElementsByName("[Month_to_Month_Begins_Date]")[0],
-			document.getElementsByName("[Rental_Amount]")[0],
-			document.getElementsByName("[Parking_Monthly_Rental_Amt]")[0],
-			document.getElementsByName("[Pet_Rent_Amt]")[0],
-			document.getElementsByName("[1st_Month_Rent]")[0],
-			document.getElementsByName("[1st_Month_Rent_Start_Date]")[0],
-			document.getElementsByName("[1st_Month_Rent_End_Date]")[0],
-			document.getElementsByName("[2nd_Month_Rent]")[0],
-			document.getElementsByName("[2nd_Month_Rent_Start_Date]")[0],
-			document.getElementsByName("[2nd_Month_Rent_End_Date]")[0],
-			document.getElementsByName("[Security_Deposit_Amt]")[0],
-			document.getElementsByName("[Non-refundable_Fees_Amt]")[0],
-			document.getElementsByName("[Pet_Deposit_Amt]")[0],
-			document.getElementsByName("[Pet_Fee_Amt]")[0],
-			document.getElementsByName("[Total_Rental_Amount]")[0],
-			document.getElementsByName("[Prior_Pmt_Amt]")[0],
-			document.getElementsByName("[Monthly_Water/Sewer/Garbage_Fee]")[0],
-			document.getElementsByName("[Total_Deposits_Amt]")[0],
-			document.getElementsByName("[Total_Fees]")[0],
-			document.getElementsByName("[Total_Move-in_Charges]")[0],
-			document.getElementsByName("[Storage_Monthly_Rental_Amt]")[0]
-		];
+	var row,tag,content,domElt;
+	for(var i=0;i<rowset1.length;i++){
+		row = rowset1[i];
+		tag = row.tagName;
+		content = row.textContent;
 
-	for(var i=0;i<domArr.length;i++){
-		domArr[i].value = rowset1[i].innerHTML;
-		editedMsg(domArr[i]);
+		if(tag=="TYPE") { //not a domElt, just info
+			continue;
+		}
+
+		tag = tag.substring(1); //remove dummy char (due to XML tag restrictions)
+		if(tag=="Monthly_WaterSewerGarbage") { 
+			tag = "Monthly_Water/Sewer/Garbage_Fee"; //too long to be a tag
+		}
+
+		domElt = document.getElementsByName('['+tag+']'); //sq brackets added manually due to XML tag restrictions
+		if(domElt.length==0) {
+			alert("Error with tag name "+tag+"; contact administrator")
+		} else {
+			domElt = domElt[0];
+			domElt.value = content; //rowset1[i].innerHTML;
+			editedMsg(domElt);
+		}
 	}
-
 
 	var domArr2 = [
 		document.getElementsByName("[RightSignature_Applicant_b_Name]")[0],
@@ -80,17 +73,20 @@ function fillFromXML(xmlDoc){
 		document.getElementsByName("[RightSignature_Applicant_e_Email]")[0]
 	]
 
+	if(domArr2.length!=8){
+		alert("Error with with RightSignature tags.");
+	}
+
 	var dom_index = 0;
 	for(var i=0;i<rowset2.length;i++){
 		row = rowset2[i].children;
-		name = row[0].innerHTML + " " + row[1].innerHTML;
+		name = row[0].textContent + " " + row[1].textContent;
+		email = row[2].textContent;
+
 		editedMsg(domArr2[dom_index])
 		domArr2[dom_index++].value = name;
 		editedMsg(domArr2[dom_index])
-		domArr2[dom_index++].value = row[2].innerHTML;
-
-
-
+		domArr2[dom_index++].value = email;
 	}
 	
 }

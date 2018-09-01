@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DOCUMENT>
+  <DATE>08/28/2018</DATE>
+  <USER_NAME>AJITS</USER_NAME>
+  <APP_ID>100</APP_ID>
+  <APP_NAME>Manager</APP_NAME>
+  <TITLE>mocoRenew</TITLE>
+  <REGION ID="10892037362219894">
+    <ROWSET1>
+      <ROWSET1_ROW>
+        <FEE_ID>1</FEE_ID>
+        <FEE_NAME>Rent</FEE_NAME>
+        <AMOUNT>1875</AMOUNT>
+      </ROWSET1_ROW>
+      <ROWSET1_ROW>
+        <FEE_ID>6</FEE_ID>
+        <FEE_NAME>Parking</FEE_NAME>
+        <AMOUNT>100</AMOUNT>
+      </ROWSET1_ROW>
+      <ROWSET1_ROW>
+        <FEE_ID>23</FEE_ID>
+        <FEE_NAME>Garbage</FEE_NAME>
+        <AMOUNT>50</AMOUNT>
+      </ROWSET1_ROW>
+    </ROWSET1>
+    <ROWSET2>
+      <ROWSET2_ROW>
+        <FEE_NAME>Security Deposit</FEE_NAME>
+        <SUMCRG_AMOUNT>275</SUMCRG_AMOUNT>
+      </ROWSET2_ROW>
+    </ROWSET2>
+    <ROWSET3>
+      <ROWSET3_ROW>
+        <FEE_NAME>Administration</FEE_NAME>
+        <AMOUNT>100</AMOUNT>
+      </ROWSET3_ROW>
+    </ROWSET3>
+    <ROWSET4>
+      <ROWSET4_ROW>
+        <LES_CURRENT_END>08/31/2018</LES_CURRENT_END>
+      </ROWSET4_ROW>
+    </ROWSET4>
+    <ROWSET5>
+      <ROWSET5_ROW>
+        <TEN_FIRST_NAME>Linda</TEN_FIRST_NAME>
+        <TEN_LAST_NAME>Larsen</TEN_LAST_NAME>
+        <TEN_EMAIL>klarsen@uw.edu</TEN_EMAIL>
+      </ROWSET5_ROW>
+      <ROWSET5_ROW>
+        <TEN_FIRST_NAME>Kristin </TEN_FIRST_NAME>
+        <TEN_LAST_NAME>Johnson</TEN_LAST_NAME>
+        <TEN_EMAIL>bambolinaxxxx@yahoo.com</TEN_EMAIL>
+      </ROWSET5_ROW>
+    </ROWSET5>
+  </REGION>
+</DOCUMENT>
